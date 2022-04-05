@@ -8,10 +8,12 @@ for(var i =0; i< numberOfButtons; i++) {
 
 function onClick() {
     playSound(this.innerHTML);
+    addButtonAnimation(this.innerHTML);
 }
 
 function onKeyPressed(event) {
     playSound(event.key);
+    addButtonAnimation(event.key);
 }
 
 function playSound(alphabet) {
@@ -45,4 +47,12 @@ function playSound(alphabet) {
 
     var audio = new Audio(`sounds/${src}.mp3`);
     audio.play();
+}
+
+function addButtonAnimation(currentKey) {
+    var active = document.querySelector(`.${currentKey}`);
+    active.classList.add("pressed");
+    setTimeout(function() {
+        active.classList.remove("pressed")
+    }, 100);
 }
